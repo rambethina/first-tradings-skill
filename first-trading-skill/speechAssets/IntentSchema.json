@@ -1,16 +1,119 @@
 {
-  "intents": [
-    {
-      "intent": "AMAZON.StopIntent"
-    },
-    {
-      "intent": "AMAZON.CancelIntent"
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
-    },
-    {
-      "intent": "FirstTradingSkillIntent"
-    }
-  ]
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "financial events",
+          "intents": [
+              {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "NameCapture",
+                  "slots": [
+                      {
+                          "name": "USFirstName",
+                          "type": "AMAZON.US_FIRST_NAME",
+                          "samples": [
+                              "my name is"
+                          ]
+                      }
+                  ],
+                  "samples": [
+                      "my name is {USFirstName}"
+                  ]
+              },
+              {
+                  "name": "CountryCapture",
+                  "slots": [
+                      {
+                          "name": "Country",
+                          "type": "WORLD_COUNTRIES"
+                      }
+                  ],
+                  "samples": [
+                      "I am from {Country}",
+                      "I'm from {Country}"
+                  ]
+              },
+              {
+                  "name": "NextWeekEvents",
+                  "slots": [],
+                  "samples": [
+                      "financial events for next weeks",
+                      "yes"
+                  ]
+              }
+          ],
+          "types": [
+              {
+                  "name": "WORLD_COUNTRIES",
+                  "values": [
+                      {
+                          "name": {
+                              "value": "united states"
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "india"
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      "dialog": {
+          "intents": [
+              {
+                  "name": "NameCapture",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "USFirstName",
+                          "type": "AMAZON.US_FIRST_NAME",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.110674532774.498961996337"
+                          }
+                      }
+                  ]
+              },
+              {
+                  "name": "CountryCapture",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": []
+              }
+          ]
+      },
+      "prompts": [
+          {
+              "id": "Elicit.Slot.110674532774.498961996337",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What is your first name"
+                  }
+              ]
+          }
+      ]
+  }
 }
